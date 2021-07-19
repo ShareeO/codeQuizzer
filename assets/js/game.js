@@ -1,10 +1,15 @@
 // global variables
 let score = 10;
+let currentQues = 0; 
 let timerId;
+
 
 // reference variables
 const startBtnEl = document.querySelector("#start-btn");
 const scoreEl = document.querySelector("#score");
+const questionTitleEl = document.querySelector("#question-title")
+const questionChoicesEl = document.querySelector("#question-choices")
+
 
 // questions
 const questions = [
@@ -87,28 +92,47 @@ const questions = [
         choice3: "*",
         choice4: "-",
         answer: "=",
-    }
-]
+    },
+];
 
 scoreEl.textContent = score;
 
 //event handlers
 function startQuiz() {
+    
     console.log("handling start quiz");
 
     //start timer
     timerId = setInterval(function() {
         score--;
-        scoreEl.textContent = score
+        scoreEl.textContent = score;
 
     }, 1000)
 
     //show first question
     console.log("get first question");
+    const currentQuestion = questions[currentQues];
+
+    questionTitleEl.textContent = currentQuestion.question;
+
+// show choices
+/*
+<button> choice1</button>
+<button> choice1</button>
+*/
+const choices = [currentQuestion.choice1, currentQuestion.choice2, currentQuestion.choice3, currentQuestion.choice4, ]
+
+choices.forEach(function(choice) {
+    const choicebtn = document.createElement("button");
+    choicebtn.textContent = choice;
+    questionChoicesEl.appendChild(choicebtn);
+});
+
+
 };
 
 // event listeners
-startBtnEl.addEventListener("click");
+startBtnEl.addEventListener("click", startQuiz);
 
 
 
