@@ -1,5 +1,5 @@
 // global variables
-let score = 10;
+let score = 100;
 let currentQues = 0; 
 let timerId;
 
@@ -97,6 +97,8 @@ const questions = [
 
 scoreEl.textContent = score;
 
+
+
 //event handlers
 function startQuiz() {
     
@@ -109,28 +111,48 @@ function startQuiz() {
 
     }, 1000)
 
+
+
     //show first question
     console.log("get first question");
+    showQuestion();
+};
+
+function handleQuestionClick(event) {
+const currentQuestionCorrect = questions[currentQues].answer;
+const val =event.target.textContent
+
+//wrong
+if(currentQuestionCorrect !== val){
+ score -= 10;
+ scoreEl.textContent = score;
+} 
+
+//next question
+currentQues++;
+showQuestion();
+}
+
+
+function showQuestion(){
     const currentQuestion = questions[currentQues];
 
     questionTitleEl.textContent = currentQuestion.question;
 
 // show choices
-/*
-<button> choice1</button>
-<button> choice1</button>
-*/
-const choices = [currentQuestion.choice1, currentQuestion.choice2, currentQuestion.choice3, currentQuestion.choice4, ]
+const choices = [currentQuestion.choice1, currentQuestion.choice2, currentQuestion.choice3, currentQuestion.choice4]
 
+questionChoicesEl.innerHTML = "";
 choices.forEach(function(choice) {
-    const choicebtn = document.createElement("button");
-    choicebtn.textContent = choice;
-    questionChoicesEl.appendChild(choicebtn);
+    const choiceBtn = document.createElement("button");
+
+    choiceBtn.textContent = choice;
+    choiceBtn.setAttribute ("class", "choiceBtn")
+
+    choiceBtn.onclick = handleQuestionClick;
+    questionChoicesEl.appendChild(choiceBtn);
 });
-
-
-};
-
+}
 // event listeners
 startBtnEl.addEventListener("click", startQuiz);
 
