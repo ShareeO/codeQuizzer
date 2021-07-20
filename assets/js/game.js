@@ -169,14 +169,24 @@ clearInterval(timerId);
 };
 
 function saveScore() {
-    const initials = intEl.value
+    const intials = intEl.value;
 
-    console.log(initials)
+    const playerScore = {
+        int: intials,
+        score: score
+    }
+
+const highScores = [];
+
+highScores.push(playerScore)
+
+window.localStorage.setItem("highScores", JSON.stringify(highScores))
+
 };
 
 // event listeners
 startBtnEl.addEventListener("click", startQuiz);
-saveBtnEl.addEventListener("click", saveQuiz);
+saveBtnEl.addEventListener("click", saveScore);
 
 
 
