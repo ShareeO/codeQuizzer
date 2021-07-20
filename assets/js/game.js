@@ -1,8 +1,8 @@
 // global variables
-let score = 5;
+let score = 100;
 let currentQues = 0; 
 let timerId;
-const maxQues = 10;
+
 
 // reference variables
 const startBtnEl = document.querySelector("#start-btn");
