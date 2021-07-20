@@ -176,7 +176,7 @@ function saveScore() {
         score: score
     }
 
-const highScores = [];
+const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
 
 highScores.push(playerScore)
 
