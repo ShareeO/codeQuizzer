@@ -191,9 +191,16 @@ window.localStorage.setItem("highScores", JSON.stringify(highScores))
 function showhighScores() {
     const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
 
+    // sort by score
+highScores.sort((a,b) => (a.score < b.score) ? 1 : -1);
+
+    //only show 5
+const topFive = highScores.slice(0, 5)
+
+
     highscoreDisplayEl.innerHTML = "";
 
-    highScores.forEach(function(score){
+    topFive.forEach(function(score){
         const scoreEl = document.createElement("h3");
 
         scoreEl.textContent = score.int + " - " + score.score;
