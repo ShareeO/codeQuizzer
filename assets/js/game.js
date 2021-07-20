@@ -1,5 +1,5 @@
 // global variables
-let score = 100;
+let score = 5;
 let currentQues = 0; 
 let timerId;
 
@@ -109,6 +109,10 @@ function startQuiz() {
         score--;
         scoreEl.textContent = score;
 
+        if(score <= 0) {
+            endQuiz();
+        }
+
     }, 1000)
 
 
@@ -156,6 +160,9 @@ choices.forEach(function(choice) {
 // event listeners
 startBtnEl.addEventListener("click", startQuiz);
 
+function endQuiz() {
+clearInterval(timerId);
+};
 
 
 
