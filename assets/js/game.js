@@ -9,7 +9,8 @@ const startBtnEl = document.querySelector("#start-btn");
 const scoreEl = document.querySelector("#score");
 const questionTitleEl = document.querySelector("#question-title")
 const questionChoicesEl = document.querySelector("#question-choices")
-
+const saveBtnEl = document.querySelector("#save-btn");
+const intEl = document.querySelector("#int");
 
 // questions
 const questions = [
@@ -97,8 +98,6 @@ const questions = [
 
 scoreEl.textContent = score;
 
-
-
 //event handlers
 function startQuiz() {
     
@@ -116,7 +115,6 @@ function startQuiz() {
         }
 
     }, 1000)
-
 
 
 // show first question
@@ -164,17 +162,21 @@ choices.forEach(function(choice) {
     questionChoicesEl.appendChild(choiceBtn);
 });
 }
-// event listeners
-startBtnEl.addEventListener("click", startQuiz);
+
 
 function endQuiz() {
 clearInterval(timerId);
-
-console.log("game over");
 };
 
+function saveScore() {
+    const initials = intEl.value
 
+    console.log(initials)
+};
 
+// event listeners
+startBtnEl.addEventListener("click", startQuiz);
+saveBtnEl.addEventListener("click", saveQuiz);
 
 
 
