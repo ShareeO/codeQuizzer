@@ -11,6 +11,9 @@ const questionTitleEl = document.querySelector("#question-title")
 const questionChoicesEl = document.querySelector("#question-choices")
 const saveBtnEl = document.querySelector("#save-btn");
 const intEl = document.querySelector("#int");
+const highscoreDisplayEl = document.querySelector("#highscore-Display");
+
+
 
 // questions
 const questions = [
@@ -183,6 +186,25 @@ highScores.push(playerScore)
 window.localStorage.setItem("highScores", JSON.stringify(highScores))
 
 };
+
+
+function showhighScores() {
+    const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+
+    highscoreDisplayEl.innerHTML = "";
+
+    highScores.forEach(function(score){
+        const scoreEl = document.createElement("h3");
+
+        scoreEl.textContent = score.int + " - " + score.score;
+
+        highscoreDisplayEl.appendChild(scoreEl)
+    })
+}
+
+showhighScores();
+
+
 
 // event listeners
 startBtnEl.addEventListener("click", startQuiz);
