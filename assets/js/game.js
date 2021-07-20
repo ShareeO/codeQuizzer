@@ -110,6 +110,8 @@ function startQuiz() {
         scoreEl.textContent = score;
 
         if(score <= 0) {
+            score = 0;
+            scoreEl.textContent = score;
             endQuiz();
         }
 
