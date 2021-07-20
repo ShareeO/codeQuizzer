@@ -2,7 +2,7 @@
 let score = 5;
 let currentQues = 0; 
 let timerId;
-
+const maxQues = 10;
 
 // reference variables
 const startBtnEl = document.querySelector("#start-btn");
@@ -117,7 +117,7 @@ function startQuiz() {
 
 
 
-    //show first question
+// show first question
     console.log("get first question");
     showQuestion();
 };
@@ -126,15 +126,20 @@ function handleQuestionClick(event) {
 const currentQuestionCorrect = questions[currentQues].answer;
 const val =event.target.textContent
 
-//wrong
+// if wrong
 if(currentQuestionCorrect !== val){
- score -= 10;
- scoreEl.textContent = score;
+score -= 10;
+scoreEl.textContent = score;
 } 
 
-//next question
-currentQues++;
-showQuestion();
+//check for next question
+if(currentQues === questions.length -1) {
+    endQuiz();
+} else{
+    currentQues++;
+    showQuestion();
+}
+
 }
 
 
@@ -162,6 +167,8 @@ startBtnEl.addEventListener("click", startQuiz);
 
 function endQuiz() {
 clearInterval(timerId);
+
+console.log("game over");
 };
 
 
