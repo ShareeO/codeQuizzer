@@ -12,8 +12,10 @@ const questionChoicesEl = document.querySelector("#question-choices")
 const saveBtnEl = document.querySelector("#save-btn");
 const intEl = document.querySelector("#int");
 const highscoreDisplayEl = document.querySelector("#highscore-Display");
-
-
+const highscoresEl = document.querySelector("#highscores");
+const scoreboxEl = document.querySelector("#score-box");
+const quizDisplayEl = document.querySelector("#quizDispaly")
+const initalboxEl = document.querySelector("#inital-box")
 
 // questions
 const questions = [
@@ -119,6 +121,10 @@ function startQuiz() {
 
     }, 1000)
 
+    //hide scores and start button
+    highscoresEl.setAttribute("class", "hide");
+    startBtnEl.setAttribute("class", "hide");
+    scoreboxEl.removeAttribute("class");
 
 // show first question
     console.log("get first question");
@@ -169,6 +175,8 @@ choices.forEach(function(choice) {
 
 function endQuiz() {
 clearInterval(timerId);
+quizDisplayEl.setAttribute("class", "hide");
+initalboxEl.removeAttribute("class")
 };
 
 function saveScore() {
@@ -177,7 +185,8 @@ function saveScore() {
     const playerScore = {
         int: intials,
         score: score
-    }
+    };
+    
 
 const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
 
