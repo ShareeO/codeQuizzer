@@ -3,7 +3,6 @@ let score = 100;
 let currentQues = 0; 
 let timerId;
 
-
 // reference variables
 const startBtnEl = document.querySelector("#start-btn");
 const scoreEl = document.querySelector("#score");
@@ -148,7 +147,6 @@ if(currentQues === questions.length -1) {
     currentQues++;
     showQuestion();
 }
-
 }
 
 

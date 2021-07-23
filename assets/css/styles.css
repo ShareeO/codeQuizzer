@@ -1,11 +1,66 @@
-.questionTitle {
+.pageTitle {
+    text-shadow: -1px -1px 1px #aaa,
+    0px 4px 1px rgba(0,0,0,0.5),
+    4px 4px 5px rgba(0,0,0,0.7),
+    0px 0px 7px rgba(0,0,0,0.4);
+    text-align: center;
+    font-size: 50px;
+}
 
+.questionTitle {
+    text-align: center;
 }
 
 .choiceBtn {
-
+    text-align: center;
 }
 
 .hide {
+    display: none;
     
+}
+
+#score-box {
+        /* Positioning */
+        position: absolute;
+        top: 20px;
+        right: 70px;
+         /* Visual */
+        color: rgb(9, 250, 41);
+}
+
+#highscores, #inital-box {
+    box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px;
+    width: 200px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+
+}
+#start-btn {
+    color: rgb(248, 246, 246);
+    background-color: blueviolet;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#save-btn {
+    color: rgb(248, 246, 246);
+    background-color: blueviolet;
+}
+
+#quizDispaly {
+    box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px;
+    width: 500px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
 }
