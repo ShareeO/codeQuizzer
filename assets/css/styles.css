@@ -53,6 +53,8 @@
 #save-btn {
     color: rgb(248, 246, 246);
     background-color: blueviolet;
+    border-radius: 50%;
+    font-size: 20px;
 }
 
 #quizDispaly {

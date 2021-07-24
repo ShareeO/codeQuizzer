@@ -1,20 +1,20 @@
 // global variables
-let score = 100;
+let time = 100;
 let currentQues = 0; 
 let timerId;
 
 // reference variables
 const startBtnEl = document.querySelector("#start-btn");
-const scoreEl = document.querySelector("#score");
 const questionTitleEl = document.querySelector("#question-title")
-const questionChoicesEl = document.querySelector("#question-choices")
+const questionChoicesEl = document.querySelector("#question-choices");
 const saveBtnEl = document.querySelector("#save-btn");
 const intEl = document.querySelector("#int");
 const highscoreDisplayEl = document.querySelector("#highscore-Display");
 const highscoresEl = document.querySelector("#highscores");
 const scoreboxEl = document.querySelector("#score-box");
 const quizDisplayEl = document.querySelector("#quizDispaly")
-const initalboxEl = document.querySelector("#inital-box")
+const initalboxEl = document.querySelector("#inital-box");
+const timeEl = document.getElementById("time");
 
 // questions
 const questions = [
@@ -100,30 +100,24 @@ const questions = [
     },
 ];
 
-scoreEl.textContent = score;
-
 //event handlers
 function startQuiz() {
-    
-    console.log("handling start quiz");
 
     //start timer
     timerId = setInterval(function() {
-        score--;
-        scoreEl.textContent = score;
-
-        if(score <= 0) {
-            score = 0;
-            scoreEl.textContent = score;
+        time--;
+        timeEl.textContent = time;
+        if(time <= 0) {
             endQuiz();
         }
 
     }, 1000)
+    timeEl.textContent = time;
 
     //hide scores and start button
     highscoresEl.setAttribute("class", "hide");
     startBtnEl.setAttribute("class", "hide");
-    scoreboxEl.removeAttribute("class");
+    // scoreboxEl.removeAttribute("class");
 
 // show first question
     console.log("get first question");
@@ -131,45 +125,40 @@ function startQuiz() {
 };
 
 function handleQuestionClick(event) {
-const currentQuestionCorrect = questions[currentQues].answer;
-const val =event.target.textContent
-
-// if wrong
-if(currentQuestionCorrect !== val){
-score -= 10;
-scoreEl.textContent = score;
-} 
-
-//check for next question
-if(currentQues === questions.length -1) {
+if (this.value !== questions[currentQues].answer){
+    time -= 10
+    if (time < 0) {
+        time = 0
+    }
+    timeEl.textContent = time
+}
+currentQues ++ 
+if (currentQues === questions.length) {
     endQuiz();
-} else{
-    currentQues++;
+} else {
     showQuestion();
 }
 }
-
 
 function showQuestion(){
     const currentQuestion = questions[currentQues];
 
     questionTitleEl.textContent = currentQuestion.question;
-
+console.log (questions[currentQues])
+const choices = [currentQuestion.choice1,currentQuestion.choice2,
+currentQuestion.choice3, currentQuestion.choice4]
 // show choices
-const choices = [currentQuestion.choice1, currentQuestion.choice2, currentQuestion.choice3, currentQuestion.choice4]
-
 questionChoicesEl.innerHTML = "";
-choices.forEach(function(choice) {
+choices.forEach(function(choice, i) {
     const choiceBtn = document.createElement("button");
 
-    choiceBtn.textContent = choice;
-    choiceBtn.setAttribute ("class", "choiceBtn")
-
+    choiceBtn.setAttribute ("class", "choice")
+    choiceBtn.setAttribute ( "value", choice)
+    choiceBtn.textContent = i + 1 + ". " + choice;
     choiceBtn.onclick = handleQuestionClick;
     questionChoicesEl.appendChild(choiceBtn);
 });
 }
-
 
 function endQuiz() {
 clearInterval(timerId);
@@ -182,7 +171,7 @@ function saveScore() {
 
     const playerScore = {
         int: intials,
-        score: score
+        score: time
     };
     
 
